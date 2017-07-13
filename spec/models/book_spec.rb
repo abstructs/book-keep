@@ -15,4 +15,10 @@ RSpec.describe Book, :type => :model do
     expect(Book.find_by(title: "Harry Potter")).to eq(book1)
     expect(Book.find_by(title: "Iron John")).to eq(book2)
   end
+
+  it "Creates a new book" do
+    book1 = Book.create!(title: "Woop woop", author: "Andrew Wilson")
+
+    expect(book1).to eq(Book.find_by(title: "Woop woop"))
+  end
 end

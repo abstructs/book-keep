@@ -1,1 +1,10 @@
-<h1>Woo</h1>
+<h1>Index</h1>
+<% @books.each do |book| %>
+    <p>Title: <%= book.title %><br></p>
+    <p>Author: <%= book.author %><br></p>
+    <%= link_to "Show", book_path(book.id) %>
+    <%= link_to "Edit", edit_book_path(book.id) %>
+    <br>
+<% end %>
+
+<%= link_to "New", new_book_path %>
