@@ -1,30 +1,27 @@
 require "rails_helper"
 
 RSpec.describe Book, :type => :model do
+  before(:each) do
+    @book1 = Book.create!(title: "Harry Potter", author: "JK Rowling", rating: 0)
+    @book2 = Book.create!(title: "Iron John", author: "Robert Bly", rating: 0)
+    @invalid_book1 = Book.new(title: "Harry Potter", author: "JK Rowling", rating: 11)
+    @invalid_book2 = Book.new(title: "Harry Potter", author: "JK Rowling", rating: -1)
+  end
   it "gets all books" do
-    book1 = Book.create!(title: "Harry Potter", author: "JK Rowling", rating: 0)
-    book2 = Book.create!(title: "Iron John", author: "Robert Bly", rating: 0)
-
-    expect(Book.order(:title)).to eq([book1, book2])
+    expect(Book.order(:title)).to eq([@book1, @book2])
   end
 
   it "gets book by title" do
-    book1 = Book.create!(title: "Harry Potter", author: "JK Rowling", rating: 0)
-    book2 = Book.create!(title: "Iron John", author: "Robert Bly", rating: 0)
-
-    expect(Book.find_by(title: "Harry Potter")).to eq(book1)
-    expect(Book.find_by(title: "Iron John")).to eq(book2)
+    expect(Book.find_by(title: @book1.title)).to eq(@book1)
+    expect(Book.find_by(title: @book2.title)).to eq(@book2)
   end
 
   it "Creates a new book" do
-    book1 = Book.create!(title: "Woop woop", author: "Andrew Wilson", rating: 0)
-
-    expect(book1).to eq(Book.find_by(title: "Woop woop"))
+    expect(@book1).to eq(Book.find_by(title: @book1.title))
   end
 
   it "Only allows ratings from 0-10" do
-    book1 = Book.new(title: "Harry Potter", author: "JK Rowling", rating: 11)
-    
-    expect(book1.save).to eq(false)
+    expect(@invalid_book1.save).to eq(false)
+    expect(@invalid_book2.save).to eq(false)
   end
 end

@@ -2,6 +2,10 @@ require "rails_helper"
 
 RSpec.describe BooksController, :type => :controller do
     describe "Controller routes" do
+        before(:each) do
+            @book = Book.create!(title: "Harry Potter", author: "JK Rowling", rating: 0)
+        end
+
         it "Successfully gets the index with 200 HTTP code" do
             get :index
             expect(response).to be_success
@@ -9,30 +13,26 @@ RSpec.describe BooksController, :type => :controller do
         end
 
         it "Successfully gets the edit with 200 HTTP code" do
-            book = Book.create!(title: "Harry Potter", author: "JK Rowling", rating: 0)
-            get :edit, params: { id: book.id }
+            get :edit, params: { id: @book.id }
             expect(response).to be_success
             expect(response).to have_http_status(200)
         end
 
         it "Successfully gets the show with 200 HTTP code" do
-            book = Book.create!(title: "Harry Potter", author: "JK Rowling", rating: 0)
-            get :show, params: { id: book.id }
+            get :show, params: { id: @book.id }
             expect(response).to be_success
             expect(response).to have_http_status(200)
         end
         
         it "Successfully creates a new book" do
-            post :new, params: { id: 1, title: "Harry Potter", author: "JK Rowling", rating: 0 }
+            post :new, params: { id: @book.id, title: @book.title, author: @book.author, rating: @book.rating }
 
             expect(response).to be_success
             expect(response).to have_http_status(200)
         end
 
         it "Successfully updates a book" do
-            @book = Book.create!(id: 1, title: "The Slight Edge", author: "Jeff Olson", rating: 0)
-            
-            put :update, params: { id: @book.id, book: { title: "Harry Potter", author: "JK Rowling", rating: 0 } }
+            put :update, params: { id: @book.id, book: { title: @book.title, author: @book.author, rating: @book.rating } }
             @book.reload
 
             expect(response).to redirect_to @book
@@ -41,12 +41,10 @@ RSpec.describe BooksController, :type => :controller do
         end
 
         it "Succesfully deletes a book" do
-            @book = Book.create!(id: 1, title: "The Slight Edge", author: "Jeff Olson", rating: 0)
-
-            delete :destroy, params: { id: 1 }
+            delete :destroy, params: { id: @book.id }
             
             expect(response).to redirect_to books_path
-            expect{Book.find(1)}.to raise_error(ActiveRecord::RecordNotFound)
+            expect{Book.find(@book.id)}.to raise_error(ActiveRecord::RecordNotFound)
         end
     end
 
