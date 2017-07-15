@@ -1,3 +1,129 @@
 // Place all the styles related to the books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.brand {
+    height: 100%;
+    position: relative;
+}
+
+// Book index component, may extend book component to all "books"
+
+#book-section {
+    $purple: #9f86ff;
+    $red: #e64759;
+    $green: #1bc98e;
+    $yellow: #e4d836;
+
+    .new-book {
+        // width: 100%;
+        // align: right;
+    }
+
+    .header {
+        text-align: center;
+        color: white;
+    }
+
+    .books {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }   
+
+    // For patterned colours for book cells 
+
+    .books-container:nth-child(2n) {
+        background-color: $purple;
+        .btn-primary,
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active,
+        .btn-primary.active {
+            color: #ffffff;
+            background-color: $purple;
+            border-color: $purple;
+        }
+    }
+
+    .books-container:nth-child(3n) {
+        background-color: $red;
+        .btn-primary,
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active,
+        .btn-primary.active {
+            color: #ffffff;
+            background-color: $red;
+            border-color: $red;
+        }
+    }
+
+    .books-container:nth-child(4n) {
+        background-color: $yellow;
+        .btn-primary,
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active,
+        .btn-primary.active {
+            color: #ffffff;
+            background-color: $yellow;
+            border-color: $yellow;
+        }
+    }
+
+    .books-container{
+
+    }
+
+    .books-container {
+        display: flex;
+        flex-direction: column;
+        color: white;
+        width: 40%;
+        margin: 10px;
+        height: 100%;
+        padding: 10px;
+        border-radius: 2px;
+
+        // Default colors
+        background-color: $green;
+        
+        .btn-primary,
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active,
+        .btn-primary.active {
+            color: #ffffff;
+            background-color: $green;
+            border-color: $green;
+        }
+
+        .book-info {
+            text-align: justify;
+            h3, h4 {
+                margin: 10px;
+            }
+        }
+
+        hr {
+            color: black;
+            width: 100%;
+        }
+
+        .book-links {
+            // display: inline-block !important;
+            align-self: flex-start;
+            margin-left: auto;
+            height: 0px;
+            // justify-content: flex-end;
+
+            // color: white;
+            // display: flex;
+            // flex-direction: row;
+            // margin: 10px;
+        }
+    }
+
+}
