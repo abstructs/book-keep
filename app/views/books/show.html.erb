@@ -1,6 +1,17 @@
 <h1>Show</h1>
 <%= @book.title %>
 <%= @book.author %>
+<h1>Notes:</h1>
+<% @book.notes.each do |note| %>
+<%= note.body %>
+<% end %>
+
+<h1>New Note</h1>
+<%= form_for [@book, @book.notes.build] do |f|%>
+<%= f.label "Note" %>
+<%= f.text_area :body%>
+<%= f.submit %>
+<% end %>
 
 <%= link_to "Index", books_path %>
 <%= link_to "Edit", edit_book_path(@book.id) %>
