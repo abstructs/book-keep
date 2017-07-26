@@ -7,6 +7,14 @@
     position: relative;
 }
 
+h1, h2, h3, h4, h5, h6, p {
+    // color: white !important;
+}
+
+section {
+    margin: 0 auto !important;
+}
+
 // Book index component, may extend book component to all "books"
 
 #book-section {
@@ -15,10 +23,10 @@
     $green: #1bc98e;
     $yellow: #e4d836;
 
-    .new-book {
-        // width: 100%;
-        // align: right;
-    }
+    // .new-book {
+    //     // width: 100%;
+    //     // align: right;
+    // }
 
     .header {
         text-align: center;

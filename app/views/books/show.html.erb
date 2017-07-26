@@ -1,17 +1,28 @@
-<h1>Show</h1>
-<%= @book.title %>
-<%= @book.author %>
-<h1>Notes:</h1>
-<% @book.notes.each do |note| %>
-<%= note.body %>
-<% end %>
+<section>
+    <header>
+        <h1 class="text-center page-header">Book Information</h1>
+    </header>
 
-<h1>New Note</h1>
-<%= form_for [@book, @book.notes.build] do |f|%>
-<%= f.label "Note" %>
-<%= f.text_area :body%>
-<%= f.submit %>
-<% end %>
+    <div class=book-info>
+        <h3 class=text-left>Title</h3>
+        <p class=text-left><%= @book.title %></p>
+        <h3 class=text-left>Author</h3>
+        <p class=text-left><%= @book.author %></p>
+    </div>
 
-<%= link_to "Index", books_path %>
-<%= link_to "Edit", edit_book_path(@book.id) %>
+    <h3>Notes:</h3>
+
+    <% @book.notes.each do |note| %>
+    <p class=text-left><%= note.body %></p>
+    
+    <% end %>
+
+    <h4>add a note</h4>
+    <%= form_for [@book, @book.notes.build], html: {class: "form-group"} do |f|%>
+    <%= f.text_area :body, class: "form-control"%>
+    <%= f.submit 'submit', class: "btn btn-default" %>
+    <% end %>
+
+    <%= link_to "Index", books_path %>
+    <%= link_to "Edit", edit_book_path(@book.id) %>
+</section>

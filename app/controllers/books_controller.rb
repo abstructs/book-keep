@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+    before_action :authenticate_user!, only: [:create, :destroy, :edit]
+
     def index
         @books = Book.all
     end
@@ -48,7 +50,6 @@ class BooksController < ApplicationController
     end
 
     private
-
         def book_params
             params.require(:book).permit(:title, :author, :rating)
         end

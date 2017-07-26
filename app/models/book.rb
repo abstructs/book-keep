@@ -5,5 +5,6 @@ class Book < ApplicationRecord
                        length: { minimum: 5 }
     validates :rating, inclusion: 0..10
 
-    has_many :notes
+    has_many :notes, dependent: :destroy
+
 end
