@@ -1,4 +1,5 @@
 require "rails_helper"
+require 'shared_contexts'
 
 RSpec.describe Book, :type => :model do
   before(:each) do

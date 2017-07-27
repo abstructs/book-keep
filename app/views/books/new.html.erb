@@ -1,6 +1,6 @@
 <section>
     <header>
-        <h1>add a new book</h1>
+        <h1>Add a new book</h1>
     </header>
     <div class=container>
         <%= form_for @book, url: {action: "create"}, html: {class: "form-group new-book"} do |f| %>
@@ -9,6 +9,9 @@
             <br>
             <%= f.label "Author" %>
             <%= f.text_field :author, class: "form-control" %>
+            <br>
+            <%= f.label "Descripton" %>
+            <%= f.text_area :description, class: "form-control" %>
             <br>
             <%= f.label "Rating" %>
             <%= f.range_field :rating, min: 0, max: 10 %>
