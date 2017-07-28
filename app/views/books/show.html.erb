@@ -15,6 +15,7 @@
     <h3>Notes:</h3>
 
     <% @book.notes.each do |note| %>
+    <p class=text-left>User: <%= note.user %></p>
     <p class=text-left><%= note.body %></p>
     
     <% end %>
