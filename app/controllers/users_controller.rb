@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
     def profile
-        @user = User.find(params[:id])
+
+        if user_signed_in?            
+            @user = current_user
+        else
+            flash[:alert] = "Please log in to view your profile"
+            redirect_to new_user_registration_path and return
+        end
     end
 end

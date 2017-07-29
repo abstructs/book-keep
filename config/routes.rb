@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :notes 
   end   
 
-  get '/profile/:id', to: 'users#profile' 
+  get '/profile', to: 'users#profile' 
 
   root 'books#index'
 end
