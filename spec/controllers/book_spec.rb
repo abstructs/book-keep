@@ -4,7 +4,7 @@ require 'shared_contexts'
 RSpec.describe BooksController, :type => :controller do
     describe "Controller routes" do
         before(:each) do
-            @user = User.create(email: "test@example.com", password: "foobar", password_confirmation: "foobar")
+            @user = User.create(username: "abstruct", email: "test@example.com", password: "foobar", password_confirmation: "foobar")
             sign_in(@user)
 
             @book = Book.create!(title: "Harry Potter", author: "JK Rowling", rating: 0)
